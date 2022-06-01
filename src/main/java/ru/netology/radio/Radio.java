@@ -12,10 +12,20 @@ public class Radio {
         }
         this.currentStation = currentStation;
     }
+    public void next() {
+        if (currentStation < 9) {
+            currentStation = currentStation + 1;
+        }
+        else{ currentStation = 0;
 
+        }
+    }
     public int getCurrentStation(){
         return currentStation;
     }
+
+
     public int currentVolume;
+
 
 }
