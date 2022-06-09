@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTest {
+    Radio radio = new Radio();
     @ParameterizedTest
     @CsvSource({
             "-1, 0",
@@ -19,7 +20,6 @@ public class RadioTest {
     })
     public void findStation(int setCurrentStation, int expected) {
 
-        Radio radio = new Radio();
         radio.setCurrentStation(setCurrentStation);
         int actual = radio.getCurrentStation();
         Assertions.assertEquals(expected, actual);
@@ -37,7 +37,6 @@ public class RadioTest {
     })
     public void nextStation(int setCurrentStation, int expected) {
 
-        Radio radio = new Radio();
         radio.setCurrentStation(setCurrentStation);
         radio.next();
         int actual = radio.getCurrentStation();
@@ -56,7 +55,6 @@ public class RadioTest {
     })
     public void prevStation(int setCurrentStation, int expected) {
 
-        Radio radio = new Radio();
         radio.setCurrentStation(setCurrentStation);
         radio.prev();
         int actual = radio.getCurrentStation();
@@ -75,7 +73,6 @@ public class RadioTest {
     })
     public void plusVolume(int setCurrentVolume, int expected) {
 
-        Radio radio = new Radio();
         radio.setCurrentVolume(setCurrentVolume);
         radio.increaseVolume();
         int actual = radio.getCurrentVolume();
@@ -94,10 +91,62 @@ public class RadioTest {
     })
     public void minusVolume(int setCurrentVolume, int expected) {
 
-        Radio radio = new Radio();
         radio.setCurrentVolume(setCurrentVolume);
         radio.reduceVolume();
         int actual = radio.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+    Radio radio2 = new Radio(11);
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 0",
+            "0, 0",
+            "1, 1",
+            "8, 8",
+            "9, 9",
+            "10, 10",
+            "11, 0"
+    })
+    public void findStation2(int setCurrentStation, int expected) {
+
+        radio2.setCurrentStation(setCurrentStation);
+        int actual = radio2.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 1",
+            "0, 1",
+            "1, 2",
+            "2, 3",
+            "8, 9",
+            "9, 10",
+            "11, 1"
+    })
+    public void nextStation2(int setCurrentStation, int expected) {
+
+        radio2.setCurrentStation(setCurrentStation);
+        radio2.next();
+        int actual = radio2.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 10",
+            "0, 10",
+            "1, 0",
+            "2, 1",
+            "8, 7",
+            "9, 8",
+            "10, 9",
+            "11, 10",
+            "12, 10"
+    })
+    public void prevStation2(int setCurrentStation, int expected) {
+
+        radio2.setCurrentStation(setCurrentStation);
+        radio2.prev();
+        int actual = radio2.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
 }
