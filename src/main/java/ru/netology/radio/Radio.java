@@ -12,6 +12,9 @@ public class Radio {
     private int currentVolume;
     private int maxStation = 9;
 
+    public Radio(int maxStation){
+    this.maxStation = maxStation -1;
+    }
     public void setCurrentStation(int currentStation) {
         if (currentStation < 0) {
             return;
